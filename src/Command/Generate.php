@@ -45,13 +45,11 @@ final class Generate extends Command
         $this->io = new SymfonyStyle($input, $output);
         $this->url = (string)$input->getOption('url');
         $this->project = (string)$input->getArgument('project');
-
         $this->directory = $input->getOption('project-dir');
-        $directory = $this->directory;
 
-        $projects = $this->fetchProjects($directory);
+        $projects = $this->fetchProjects($this->directory);
         if (empty($projects)) {
-            $this->io()->error("No Projects found in directory: {$directory}");
+            $this->io()->error("No Projects found in directory: {$this->directory}");
             return Command::FAILURE;
         }
 
@@ -60,7 +58,7 @@ final class Generate extends Command
             return Command::FAILURE;
         }
 
-        $iterator = new \RecursiveDirectoryIterator($directory . DIRECTORY_SEPARATOR . $this->project);
+        $iterator = new \RecursiveDirectoryIterator($this->directory . DIRECTORY_SEPARATOR . $this->project);
         foreach (new \RecursiveIteratorIterator($iterator) as $item) {
             $parts = explode('/', $item);
             if(!is_array($parts)) {
