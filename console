@@ -1,0 +1,32 @@
+#!/bin/bash
+
+PHP_BIN=$(which php)
+if [[ ${?} -gt 0 ]]; then
+    echo "Could not find php binary"
+    exit 1
+fi
+
+if [[ ! -d "vendor" ]]; then
+    echo "Missing dependency directory..."
+
+    read -rp "Do you want to install dependencies? [y/N]" yn
+    case ${yn} in
+      [Nn]* ) exit 1;;
+    esac
+
+    COMPOSER_BIN=$(which composer)
+    if [[ ${?} -gt 0 ]]; then
+      echo "Tried to solve this problem but composer binary could not be located, exiting."
+      exit 1
+    fi
+
+    if [[ $($COMPOSER_BIN install --no-interaction --no-dev) -eq 0 ]]; then
+      echo "Setup successful, please run gctl again"
+    else
+      echo "Installation failed, check logs above!"
+      exit 1
+    fi
+fi
+
+# Run application
+$PHP_BIN -f cli.php "$@"

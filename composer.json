@@ -1,0 +1,23 @@
+{
+    "name": "gameserver/patchtool",
+    "description": "Helps to handle patches.",
+    "type": "project",
+    "require": {
+        "symfony/console": "^5.2",
+        "symfony/lock": "^5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Padrio",
+            "email": "padrio@akaritale.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^5.2"
+    }
+}
