@@ -3,5 +3,6 @@
 /.vs
 
 # Project dependencies
-/vendor
+/app/vendor
 /Patch
+/patchtool.phar
