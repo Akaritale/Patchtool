@@ -102,6 +102,6 @@ final class Generate extends Command
         $file = str_replace("{$this->directory}/{$this->project}/", '', $item);
         $url = $this->url . $this->project . '/' . $file;
 
-        $this->io()->writeln("{$file}\t{$url}");
+        $this->io()->writeln("{$file} {$url}");
     }
 }
