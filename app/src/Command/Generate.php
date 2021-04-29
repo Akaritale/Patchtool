@@ -45,7 +45,7 @@ final class Generate extends Command
         $this->io = new SymfonyStyle($input, $output);
         $this->url = (string)$input->getOption('url');
         $this->project = (string)$input->getArgument('project');
-        $this->directory = $input->getOption('project-dir');
+        $this->directory = $input->getOption('project-dir') ?? realpath('.');
 
         $projects = $this->fetchProjects($this->directory);
         if (empty($projects)) {
