@@ -38,13 +38,11 @@ final class Generate extends Command
         $this->addArgument('project', InputArgument::OPTIONAL, 'Select for which project we generate the urls.', $this->project);
         $this->addOption('project-dir', null, InputArgument::OPTIONAL, 'Directory where the patcher projects are located.');
         $this->addOption('url', null, InputArgument::OPTIONAL, 'Base Download URL', $this->url);
-        //$this->addOption('output', null, InputArgument::OPTIONAL, 'Output file where links will be written to.');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->io = new SymfonyStyle($input, $output);
-        //$file = $input->getOption('output');
         $this->url = (string)$input->getOption('url');
         $this->project = (string)$input->getArgument('project');
 
